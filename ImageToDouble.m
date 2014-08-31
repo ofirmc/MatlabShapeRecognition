@@ -1,7 +1,7 @@
 function [I]=ImageToDouble(Image)
 
 Image=im2double(rgb2gray(Image));
-% figure('Name','Original Picture Gray','NumberTitle','off'),imshow(Image);
+
 [n,m]=size(Image);
 for i=1:n,
      for j=1:m,

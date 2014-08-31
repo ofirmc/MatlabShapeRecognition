@@ -46,13 +46,9 @@ end
 
 % --- Executes just before FinaleProject is made visible.
 function FinaleProject_OpeningFcn(hObject, eventdata, handles, varargin)
-% This function has no output args, see OutputFcn.
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to FinaleProject (see VARARGIN)
+
 handles.Image=im2double(imread('PicDa.jpg'));
-%handles.Image=im2double(imread('BadPicDa.jpg'));
+
 handles.OriginalImage=handles.Image;
 handles.BWI=ImageToDouble(handles.Image);
 imshow (handles.Image,'Parent', handles.axes1);
@@ -67,16 +63,7 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes FinaleProject wait for user response (see UIRESUME)
-% uiwait(handles.figure1);
-
-
-% --- Outputs from this function are returned to the command line.
 function varargout = FinaleProject_OutputFcn(hObject, eventdata, handles) 
-% varargout  cell array for returning output args (see VARARGOUT);
-% hObject    handle to figure
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
@@ -100,10 +87,6 @@ for i = 1:length(handles.boundaries) %For Each Shape.
      end
 end
 imshow(ImGray);
-% hObject    handle to Circle (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Square.
 function Square_Callback(hObject, eventdata, handles)
@@ -121,10 +104,6 @@ for i = 1:length(handles.boundaries) %For Each Shape.
      end
 end
 imshow(ImGray);
-% hObject    handle to Square (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Rectangle.
 function Rectangle_Callback(hObject, eventdata, handles)
@@ -151,10 +130,6 @@ for i = 1:length(handles.boundaries) %For Each Shape.
      end
 end
 imshow(ImGray);
-% hObject    handle to Rectangle (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Triangle.
 function Triangle_Callback(hObject, eventdata, handles)
@@ -178,10 +153,6 @@ for i = 1:length(handles.boundaries) %For Each Shape.
      end
 end
 imshow(ImGray);
-% hObject    handle to Triangle (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Ellipse.
 function Ellipse_Callback(hObject, eventdata, handles)
@@ -202,29 +173,16 @@ for i = 1:length(handles.boundaries) %For Each Shape.
     end
 end
 imshow(ImGray);
-% hObject    handle to Ellipse (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in AllShapes.
 function AllShapes_Callback(hObject, eventdata, handles)
 cla
 ClassifyShapes(handles.labelMatrix ,handles.BWI);
-% hObject    handle to AllShapes (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in NoneOfTheAbove.
 function NoneOfTheAbove_Callback(hObject, eventdata, handles)   %Color all shapes in GrayScale.
 cla
 imshow (handles.GrayPic,'Parent', handles.axes1);
-
-% hObject    handle to NoneOfTheAbove (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in ReStart.
 function ReStart_Callback(hObject, eventdata, handles)
@@ -238,10 +196,6 @@ handles.GrayPic=0.2989*(handles.Image(:,:,1))+0.587*(handles.Image(:,:,2))+0.114
 
 imshow (handles.Image,'Parent', handles.axes1);
 guidata(hObject, handles);
-% hObject    handle to ReStart (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Dilation.
 function Dilation_Callback(hObject, eventdata, handles)
@@ -276,10 +230,6 @@ handles.BWI=imdilate(handles.BWI,se);
 handles.imgCleaned = handles.BWI;
 imshow (handles.imgCleaned,'Parent', handles.axes1);
 guidata(hObject, handles);
-% hObject    handle to Dilation (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Erosion.
 function Erosion_Callback(hObject, eventdata, handles)
@@ -314,9 +264,6 @@ handles.BWI=imerode(handles.BWI,se);
 handles.imgCleaned = handles.BWI;
 imshow (handles.imgCleaned,'Parent', handles.axes1);
 guidata(hObject, handles);
-% hObject    handle to Erosion (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % --- Executes on button press in Closing.
 function Closing_Callback(hObject, eventdata, handles)
@@ -351,10 +298,6 @@ handles.BWI=imclose(handles.BWI,se);
 handles.imgCleaned = handles.BWI;
 imshow (handles.imgCleaned,'Parent', handles.axes1);
 guidata(hObject, handles);
-% hObject    handle to Closing (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in Opening.
 function Opening_Callback(hObject, eventdata, handles)
@@ -389,10 +332,6 @@ handles.BWI=imopen(handles.BWI,se);
 handles.imgCleaned = handles.BWI;
 imshow (handles.imgCleaned,'Parent', handles.axes1);
 guidata(hObject, handles);
-% hObject    handle to Opening (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on button press in JustCleanIt.
 function JustCleanIt_Callback(hObject, eventdata, handles)
@@ -428,32 +367,19 @@ contentsValue = contents{get(handles.CleaningSquareSize,'Value')};
          %Create structuring element
           se=strel('square', 30); 
   end
-%Just Clean It
+  
+%Clean the image
 handles.BWI=imopen(handles.BWI,se);
 handles.BWI=imclose(handles.BWI,se); 
 handles.imgCleaned = handles.BWI;
 imshow (handles.imgCleaned,'Parent', handles.axes1);
 guidata(hObject, handles);
-% hObject    handle to JustCleanIt (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 
 % --- Executes on selection change in CleaningSquareSize.
 function CleaningSquareSize_Callback(hObject, eventdata, handles)
-% hObject    handle to CleaningSquareSize (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns CleaningSquareSize contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from CleaningSquareSize
-
 
 % --- Executes during object creation, after setting all properties.
 function CleaningSquareSize_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to CleaningSquareSize (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
 % Hint: popupmenu controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
@@ -463,9 +389,6 @@ end
 
 
 function TextCSS_Callback(hObject, eventdata, handles)
-% hObject    handle to TextCSS (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 % Hints: get(hObject,'String') returns contents of TextCSS as text
 %        str2double(get(hObject,'String')) returns contents of TextCSS as a double
@@ -473,9 +396,6 @@ function TextCSS_Callback(hObject, eventdata, handles)
 
 % --- Executes during object creation, after setting all properties.
 function TextCSS_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to TextCSS (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
 
 % Hint: edit controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
@@ -494,6 +414,4 @@ handles.GrayPic=0.2989*(handles.rgbCleanedIMG(:,:,1))+0.587*(handles.rgbCleanedI
 
 handles.Image=handles.rgbCleanedIMG;
 guidata(hObject, handles);
-% hObject    handle to StartIdentifyingShapes (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+

@@ -5,10 +5,10 @@ threshold = graythresh(Image);
 imshow(Image)
 
 %Remove the Noise
-% remove all object containing fewer than 30 pixels
+% Remove all object containing less than 30 pixels
 Image = bwareaopen(Image, 30);
 
-% fill any holes, so that regionprops can be used to estimate the area enclosed by each of the boundaries
+% Fill any holes, so that regionprops can be used to estimate the area enclosed by each of the boundaries
 Image = imfill(Image, 'holes');
 imshow(Image)
 
@@ -18,8 +18,8 @@ stats = regionprops(labelMatrix, 'all'); %Information About The Shapes.
 
 for i = 1:length(boundaries) %For Each Shape.
   
-	boundary = boundaries{i}; % obtain (X,Y) boundary coordinates corresponding to label 'i'
-    Roundness = 4*pi*stats(i).Area/ stats(i).Perimeter^2; % compute the roundness metric
+	boundary = boundaries{i}; % Obtain (X,Y) boundary coordinates corresponding to label 'i'
+    Roundness = 4*pi*stats(i).Area/ stats(i).Perimeter^2; % Compute the roundness metric
     CArea = (pi*(stats(i).EquivDiameter^2))/4;  %Compute The Circle Area As pi*R^2.
     NumOfCorners=stats(i).Extrema; %Extrema Saving (For Square & Rectangel).
     RectCord=[NumOfCorners(2,:);NumOfCorners(4,:);NumOfCorners(6,:);NumOfCorners(8,:)]; %For Rectangle.
